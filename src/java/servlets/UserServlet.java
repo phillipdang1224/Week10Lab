@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Role;
 
 public class UserServlet extends HttpServlet {
 
@@ -20,6 +22,8 @@ public class UserServlet extends HttpServlet {
         
         UserService us = new UserService();
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        Role role = (Role) session.getAttribute("role");
         if (action != null && action.equals("view")) {
             String selectedUsername = request.getParameter("selectedUsername");
             try {
